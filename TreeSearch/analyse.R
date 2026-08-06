@@ -10,10 +10,10 @@ dat <- ReadAsPhyDat(latest)
 
 resultsFile <- ResultsFile(latest, "ew")
 
-best <- MaximizeParsimony(dataset = dat, strategy = "sprint")
+best <- MaximizeParsimony(dataset = dat, effort = -1)
 write.nexus(best, file = resultsFile)
 
-best <- MaximizeParsimony(dataset = dat, tree = best, strategy = "thorough",
+best <- MaximizeParsimony(dataset = dat, tree = best, effort = 1,
                           targetHits = NTip(dat) / 2)
 write.nexus(best, file = resultsFile)
 
@@ -24,7 +24,7 @@ for (k in kValues) {
     dataset = dat,
     concavity = k,
     targetHits = NTip(dat) / 2,
-    strategy = "thorough"
+    effort = 1
   )
   write.nexus(best, file = resultsFile)
 }
