@@ -13,8 +13,7 @@ resultsFile <- ResultsFile(latest, "ew")
 best <- MaximizeParsimony(dataset = dat, effort = -1)
 write.nexus(best, file = resultsFile)
 
-best <- MaximizeParsimony(dataset = dat, tree = best, effort = 1,
-                          targetHits = NTip(dat) / 2)
+best <- MaximizeParsimony(dataset = dat, tree = best, effort = 1)
 write.nexus(best, file = resultsFile)
 
 
@@ -23,7 +22,6 @@ for (k in kValues) {
   best <- MaximizeParsimony(
     dataset = dat,
     concavity = k,
-    targetHits = NTip(dat) / 2,
     effort = 1
   )
   write.nexus(best, file = resultsFile)
