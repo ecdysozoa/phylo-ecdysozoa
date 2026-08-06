@@ -10,10 +10,13 @@ dat <- ReadAsPhyDat(latest)
 
 resultsFile <- ResultsFile(latest, "ew")
 
+poolMaxSize <- 5000
+
 best <- MaximizeParsimony(dataset = dat, effort = -1)
 write.nexus(best, file = resultsFile)
 
-best <- MaximizeParsimony(dataset = dat, tree = best, effort = 1)
+best <- MaximizeParsimony(dataset = dat, tree = best, effort = 1,
+                          poolMaxSize = poolMaxSize)
 write.nexus(best, file = resultsFile)
 
 
@@ -22,7 +25,8 @@ for (k in kValues) {
   best <- MaximizeParsimony(
     dataset = dat,
     concavity = k,
-    effort = 1
+    effort = 1,
+    poolMaxSize = poolMaxSize
   )
   write.nexus(best, file = resultsFile)
 }
