@@ -52,7 +52,7 @@ Plot <- function (tr, pdf = FALSE, direction = 'rightwards', font = 3,
   }
   
   if (bi) label.offset <- 2 * min(tr$edge.length)
-  oPar <- par(cex = 0.8)  # Character expansion
+  oPar <- par(cex = 0.56)  # Character expansion
   on.exit(par(oPar), add = TRUE)
   if (direction == 'rightwards') {
     align <- 0
